@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/black">
+
+    <!-- شريط التحكم العلوي -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@android:color/darker_gray">
+
+        <!-- عرض اللون -->
+        <View
+            android:id="@+id/colorView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/holo_green_light"
+            android:layout_marginEnd="16dp" />
+
+        <!-- عناصر التحكم بالإضاءة -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- شريط Hue -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hue"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/hueSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <!-- شريط Brightness -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Brightness"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/brightnessSeekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/brightnessValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- عرض الكاميرا -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- مخطط PPG -->
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/realtime_chart"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:visibility="invisible" />
+
+    <!-- منطقة التسجيل -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/recordingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- تعليمات -->
+            <TextView
+                android:id="@+id/instructionsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ضع إصبعك على الكاميرا"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <!-- حقل إدخال السكر -->
+            <EditText
+                android:id="@+id/bloodSugarEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="أدخل قيمة السكر"
+                android:inputType="numberDecimal"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/darker_gray"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone" />
+
+            <!-- Spiner/Switch للتبديل بين الأوضاع -->
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/recordingMethodSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recording Method"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+
+            <!-- الأزرار -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/newRecordButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="تسجيل جديد"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="حفظ"
+                    android:layout_marginStart="8dp"
+                    android:enabled="false" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

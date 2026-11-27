@@ -2,6 +2,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        jcenter() // For MPAndroidChart
+        maven(url = "https://jitpack.io") // For MPAndroidChart from JitPack
     }
 }
 
